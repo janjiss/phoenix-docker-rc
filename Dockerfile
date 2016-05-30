@@ -9,12 +9,13 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
 # update and install some software requirements
-RUN apt-get update && apt-get upgrade -y && apt-get install -y curl wget git make imagemagick 
+RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y curl wget git make imagemagick
 
 
 # install Node.js (>= 5.0.0) and NPM in order to satisfy brunch.io dependencies
 # See http://www.phoenixframework.org/docs/installation#section-node-js-5-0-0-
-RUN apt-get install -y nodejs npm
+RUN curl -sL https://deb.nodesource.com/setup_5.x | bash
+RUN apt-get install -y nodejs
 
 # download and install Erlang package
 RUN wget http://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb \
@@ -29,5 +30,8 @@ RUN mix local.hex && mix local.rebar
 
 # install the Phoenix Mix archive
 RUN mix archive.install https://github.com/phoenixframework/archives/raw/master/1.2-rc/phoenix_new.ez
+
+RUN apt-get autoremove
+RUN apt-get autoclean
 
 WORKDIR /code
