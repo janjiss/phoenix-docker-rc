@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-MAINTAINER Dainis Lapins <dainis186@gmail.com>
+MAINTAINER Janis Miezitis <janjiss@gmail.com>
 
 # Elixir requires UTF-8
 ENV LANG en_US.UTF-8
